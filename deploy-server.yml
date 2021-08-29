@@ -19,6 +19,8 @@
       register: ssh_key_result
 
     - debug:
+        msg: "RESULT is {{ ssh_key_result }}"
+    - debug:
         msg: "RESULT is {{ ssh_key_result.ssh_key.fingerprint }}"
 
     - name: Create a new droplet
