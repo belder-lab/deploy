@@ -19,9 +19,9 @@
       register: ssh_key_result
 
     - debug:
-        msg: "RESULT is {{ ssh_key_result }}"
+        msg: "RESULT is {{ ssh_key_result.data }}"
     - debug:
-        msg: "RESULT is {{ ssh_key_result.ssh_key.fingerprint }}"
+        msg: "RESULT is {{ ssh_key_result.data.ssh_key.fingerprint }}"
 
     - name: Create a new droplet
       community.digitalocean.digital_ocean_droplet:
