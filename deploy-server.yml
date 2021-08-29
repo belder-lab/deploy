@@ -21,7 +21,7 @@
     - name: Create a new droplet
       community.digitalocean.digital_ocean_droplet:
         state: present
-        name: "{{ project_name }} backend"
+        name: "{{ project_name }}-microservices"
         oauth_token: "{{ do_token }}"
         size: s-1vcpu-1gb
         region: fra1
