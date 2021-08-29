@@ -12,12 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           name: id_ed25519
           known_hosts: unnecessary
+
+      - name: Run ansible-galaxy
+        run: ansible-galaxy install -r requirements.yml
