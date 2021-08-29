@@ -21,3 +21,5 @@ jobs:
 
       - name: Run ansible-playbook
         run: ansible-playbook deploy-server.yml
+        env:
+          PROJECT_NAME: fastup-kit
