@@ -21,3 +21,5 @@ jobs:
 
       - name: Run ansible-galaxy
         run: ansible-galaxy install -r requirements.yml
+
+      - name: Run ansible-playbook
