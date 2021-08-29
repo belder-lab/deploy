@@ -1,3 +1,4 @@
+---
 collections:
 - name: community.digitalocean
   version: 1.9.0
