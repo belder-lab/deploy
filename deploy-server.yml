@@ -8,7 +8,7 @@
     ssh_pub: "{{ lookup('env', 'SSH_PUBLIC_KEY') }}"
     ssh_private: "{{ lookup('env', 'SSH_PRIVATE_KEY') }}"
     project_name: "{{ lookup('env', 'PROJECT_NAME') }}"
-    key_name: "sshkey"
+    key_name: "{{ project_name }} key"
   tasks:
     - name: Create ssh key
       community.digitalocean.digital_ocean_sshkey:
@@ -17,6 +17,9 @@
         ssh_pub_key: "{{ ssh_pub }}"
         state: present
       register: ssh_key_result
+
+    - debug:
+        msg: "RESULT is {{ ssh_key_result }}"
 
     - name: Create a new droplet
       community.digitalocean.digital_ocean_droplet:
