@@ -8,7 +8,7 @@
     ssh_pub: "{{ lookup('env', 'SSH_PUBLIC_KEY') }}"
     ssh_private: "{{ lookup('env', 'SSH_PRIVATE_KEY') }}"
     project_name: "{{ lookup('env', 'PROJECT_NAME') }}"
-    key_name: "{{ project_name }}-ssh-key"
+    key_name: "sshkey"
   tasks:
     - name: Create ssh key
       community.digitalocean.digital_ocean_sshkey:
@@ -28,7 +28,7 @@
         image: docker-20-04
         wait_timeout: 500
         ssh_keys:
-          - "{{ key_name }}"
+          - "sshkey"
           - "0c:c0:21:2e:20:47:f8:58:b3:f9:24:85:33:bd:3b:82"
       register: droplet
 
