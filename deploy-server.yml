@@ -8,14 +8,15 @@
     ssh_pub: "{{ lookup('env', 'SSH_PUBLIC_KEY') }}"
     ssh_private: "{{ lookup('env', 'SSH_PRIVATE_KEY') }}"
     project_name: "{{ lookup('env', 'PROJECT_NAME') }}"
+    key_name: "{{ project_name  }} ssh key"
   tasks:
     - name: Create ssh key
       community.digitalocean.digital_ocean_sshkey:
         oauth_token: "{{ do_token }}"
-        name: "{{ project_name  }} ssh key"
+        name: "{{ key_name  }}"
         ssh_pub_key: "{{ ssh_pub }}"
         state: present
-      register: ssh_key
+      register: ssh_key_result
 
     - name: Create a new droplet
       community.digitalocean.digital_ocean_droplet:
@@ -26,7 +27,7 @@
         region: fra1
         image: docker-20-04
         wait_timeout: 500
-        ssh_keys: ["{{ ssh_key }}", "0c:c0:21:2e:20:47:f8:58:b3:f9:24:85:33:bd:3b:82"]
+        ssh_keys: ["{{ key_name }}", "0c:c0:21:2e:20:47:f8:58:b3:f9:24:85:33:bd:3b:82"]
       register: droplet
 
     # - debug:
