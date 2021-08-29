@@ -18,11 +18,6 @@
         state: present
       register: ssh_key_result
 
-    - debug:
-        msg: "RESULT is {{ ssh_key_result.data }}"
-    - debug:
-        msg: "RESULT is {{ ssh_key_result.data.ssh_key.fingerprint }}"
-
     - name: Create a new droplet
       community.digitalocean.digital_ocean_droplet:
         state: present
@@ -33,7 +28,7 @@
         image: docker-20-04
         wait_timeout: 500
         ssh_keys:
-          - "{{ ssh_key_result.ssh_key.fingerprint  }}"
+          - "{{ ssh_key_result.data.ssh_key.fingerprint  }}"
           - "0c:c0:21:2e:20:47:f8:58:b3:f9:24:85:33:bd:3b:82"
       register: droplet
 
