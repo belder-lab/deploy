@@ -24,7 +24,7 @@ jobs:
         run: ansible-galaxy install -r requirements.yml
 
       - name: Run ansible-playbook
-        run: ansible-playbook deploy-server.yml
+        run: ansible-playbook deploy-server.yml --tags default
         env:
           PROJECT_NAME: fastup-kit
           DO_TOKEN: ${{ secrets.DO_TOKEN }}
