@@ -1,7 +1,7 @@
 # Deploy fastup-kit
 
 ## Setup
-1. Clone repository
+1. Fork repository
 2. Set secure env on github actions:
     1. DO_TOKEN - digital ocean token
     2. SSH_PUB - generated ssh pub key

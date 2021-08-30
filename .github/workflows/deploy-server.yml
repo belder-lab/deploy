@@ -2,9 +2,9 @@ name: CI
 
 on:
   # For debug
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
