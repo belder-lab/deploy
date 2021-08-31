@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: false
+  connection: local
+  roles:
+    - role: digitalocean
+
+- hosts: do
+  gather_facts: false
+  roles:
+    - role: apolloserver
