@@ -26,8 +26,3 @@
   tags:
     - vps
   register: droplet
-
-- debug:
-    msg: "ID is {{ droplet.data.droplet.id }}, IP is {{ droplet.data.ip_address }}"
-  tags:
-    - vps
