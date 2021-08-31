@@ -1,0 +1,7 @@
+[do]
+
+[do:vars]
+ansible_ssh_user=root
+
+[all]
+localhost
