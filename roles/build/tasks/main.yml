@@ -1,0 +1,6 @@
+---
+- name: build apolloserver
+  shell: "echo hello"
+  tags:
+    - build
+    - backend

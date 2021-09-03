@@ -24,7 +24,7 @@ jobs:
         run: ansible-galaxy install -r requirements.yml
 
       - name: Run ansible-playbook
-        run: ansible-playbook deploy-app.yml --tags "backend,ssh,vps" -i production -i do_hosts.yml -vvvv
+        run: ansible-playbook deploy-app.yml --tags "backend,ssh,vps" -i production.ini -i do_hosts.yml -vvvv
         env:
           PROJECT_NAME: fastup-kit
           DO_TOKEN: ${{ secrets.DO_TOKEN }}

@@ -16,7 +16,7 @@ ansible-galaxy install -r requirements.yml
 
 ## Run
 ```sh
-ansible-playbook deploy-server.yml -i production.yml --tags default -vvvv
+ansible-playbook deploy-app.yml --tags ssh,vps,backend -i production.ini -i do_hosts.yml -vvvv
 ```
 
 ## Development
@@ -39,14 +39,14 @@ source ./setup-env.sh
 5. Run ansible-playbook
 
 ## Dev Notes
-Show all inventories:
+Show dynamic inventories:
 ```sh
 ansible-inventory -i do_hosts.yml --graph -vvvv
 ```
 
 Deploy all
 ```sh
-ansible-playbook deploy-app.yml --tags ssh,vps,backend -i production,do_hosts.yml -vvvv
+ansible-playbook deploy-app.yml --tags ssh,vps,backend -i production.ini -i do_hosts.yml -vvvv
 ```
 
 Add in `production` enviroment file
