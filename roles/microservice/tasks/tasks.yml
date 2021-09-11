@@ -1,0 +1,6 @@
+---
+- name: Enter on server
+  shell: "echo hello"
+  tags:
+    - microservice
+    - microservice-name
