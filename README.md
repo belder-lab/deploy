@@ -1,5 +1,9 @@
 # Deploy fastup-kit
 
+## Requirements for deploy
+* Ansible
+* Docker
+
 ## Setup
 1. Fork repository
 2. Set secure env on github actions:
