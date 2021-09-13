@@ -1,6 +1,6 @@
 ---
-- name: build apolloserver
+- name: build docker-image
   shell: "echo hello"
   tags:
     - build
-    - backend
+    - microservice

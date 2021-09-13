@@ -8,4 +8,4 @@
 - hosts: do
   gather_facts: false
   roles:
-    - role: apolloserver
+    - role: buildmicroservice
