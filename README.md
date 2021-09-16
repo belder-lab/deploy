@@ -61,4 +61,5 @@ ansible_ssh_private_key_file=/Users/<username>/<path_to_project>/deploy/ssh/id_e
 For building & running
 ```sh
 docker build . -t ansible && docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -it ansible
+./run.sh
 ```
