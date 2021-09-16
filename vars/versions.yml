@@ -1,0 +1,5 @@
+---
+apps:
+  - name: telegram-bot-microservice
+    version: v1.0.0
+    repo: git@github.com:fastup-kit/telegram-bot-microservice.git

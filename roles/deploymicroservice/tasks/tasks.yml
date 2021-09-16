@@ -3,4 +3,3 @@
   shell: "echo hello"
   tags:
     - microservice
-    - microservice-name

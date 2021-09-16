@@ -1,7 +1,6 @@
 # Deploy fastup-kit
 
 ## Requirements for deploy
-* Ansible
 * Docker
 
 ## Setup
@@ -20,7 +19,7 @@ ansible-galaxy install -r requirements.yml
 
 ## Run
 ```sh
-ansible-playbook deploy-app.yml --tags ssh,vps,backend -i production.ini -i do_hosts.yml -vvvv
+ansible-playbook deploy-app.yml --tags "ssh,vps,backend" -i production.ini -i do_hosts.yml -vvvv
 ```
 
 ## Development
@@ -50,11 +49,16 @@ ansible-inventory -i do_hosts.yml --graph -vvvv
 
 Deploy all
 ```sh
-ansible-playbook deploy-app.yml --tags ssh,vps,backend -i production.ini -i do_hosts.yml -vvvv
+ansible-playbook deploy-app.yml --tags "ssh,vps,backend" -i production.ini -i do_hosts.yml -vvvv
 ```
 
 Add in `production` enviroment file
 ```ini
 [do:vars]
 ansible_ssh_private_key_file=/Users/<username>/<path_to_project>/deploy/ssh/id_ed25519
+```
+
+For building & running
+```sh
+docker build . -t ansible && docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -it ansible
 ```

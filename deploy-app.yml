@@ -1,11 +1,24 @@
 ---
+# deploy infrastructure
 - hosts: localhost
   gather_facts: false
   connection: local
   roles:
     - role: digitalocean
 
+# build applications
+- hosts: localhost
+  gather_facts: false
+  connection: local
+  roles:
+    - role: buildmicroservice
+  vars_files:
+    - ./vars/versions.yml
+
+# deploy applications on hosts
 - hosts: do
   gather_facts: false
   roles:
-    - role: buildmicroservice
+    - role: deploymicroservice
+  vars_files:
+    - ./vars/versions.yml

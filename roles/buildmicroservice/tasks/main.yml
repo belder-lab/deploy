@@ -1,6 +1,45 @@
 ---
-- name: build docker-image
-  shell: "echo hello"
+
+- name: Create SSH private key
+  ansible.builtin.copy:
+    content: "{{ ssh_private }}\n"
+    dest: "./.cache/ssh_private_key"
+    mode: '0600'
+  register: ssh_private_key
   tags:
     - build
-    - microservice
+
+- name: Create folder for source
+  ansible.builtin.file:
+    path: "./.cache/{{ apps[0].name }}"
+    state: directory
+    recurse: yes
+    mode: '0644'
+  register: git_folder
+  tags:
+    - build
+
+- name: Clone source code
+  ansible.builtin.git:
+    repo: "{{ apps[0].repo }}"
+    dest: "{{ git_folder.path }}"
+    version: "{{ apps[0].version }}"
+    clone: yes
+    accept_hostkey: yes
+    depth: 1
+    key_file: "{{ playbook_dir }}/{{ ssh_private_key.dest }}"
+  register: repo
+  tags:
+    - build
+
+- name: Build docker image
+  community.docker.docker_image:
+    build:
+      path: "{{ git_folder.path }}"
+    name: "{{ apps[0].name }}"
+    tag: "{{ apps[0].version }}"
+    source: build
+    archive_path: "./.cache/{{ apps[0].name }}.tar"
+  register: image_tar
+  tags:
+    - build

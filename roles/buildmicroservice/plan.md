@@ -1,8 +1,14 @@
+# ideas
+- run ansible script in docker for testing / persistence
+- add volume for cache folder (speed up next builds)
+- add loop for build
+
 ## build
 - set deployment version in ansible-playbook argument via "version"
 - set deployment project name in ansible-playbook argument via "project"
-- git clone git@project.git --tag {{ current_deployment_version }}
-- docker build project
+- ✅ create temp directory for source
+- ✅ git clone git@project.git --tag {{ current_deployment_version }}
+- ✅ docker build project
 
 ## deploy builded
 - copy docker image .tar archive from local to remote
