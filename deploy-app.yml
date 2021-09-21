@@ -11,14 +11,15 @@
   gather_facts: false
   connection: local
   roles:
-    - role: buildmicroservice
+    - role: buildmc
   vars_files:
     - ./vars/versions.yml
 
 # deploy applications on hosts
-- hosts: do
+- hosts: localhost # do
   gather_facts: false
+  connection: local
   roles:
-    - role: deploymicroservice
+    - role: deploymc
   vars_files:
     - ./vars/versions.yml

@@ -1,18 +1,18 @@
 # ideas
-- run ansible script in docker for testing / persistence
+- ✅ run ansible script in docker for testing / persistence
 - add volume for cache folder (speed up next builds)
 - add loop for build
 
 ## build
-- set deployment version in ansible-playbook argument via "version"
-- set deployment project name in ansible-playbook argument via "project"
+- ✅ check application on production and compare versions, deploy when version not equal
 - ✅ create temp directory for source
 - ✅ git clone git@project.git --tag {{ current_deployment_version }}
 - ✅ docker build project
 
 ## deploy builded
-- copy docker image .tar archive from local to remote
-- docker load image from .tar archive
+- ✅ copy docker image .tar archive from local to remote
+- ✅ docker load image from .tar archive
+- fetch all compose production files
 - docker-compose up
 - clear git folder from localhost
 - docker system prune --filter="{{ project }}" # clear from local machine

@@ -3,7 +3,7 @@
 - name: Create SSH private key
   ansible.builtin.copy:
     content: "{{ ssh_private }}\n"
-    dest: "./.cache/ssh_private_key"
+    dest: "{{ cache_folder }}/ssh_private_key"
     mode: '0600'
   register: ssh_private_key
   tags:
@@ -11,7 +11,7 @@
 
 - name: Create folder for source
   ansible.builtin.file:
-    path: "./.cache/{{ apps[0].name }}"
+    path: "{{ cache_folder }}/{{ apps[0].name }}"
     state: directory
     recurse: yes
     mode: '0644'
@@ -32,6 +32,13 @@
   tags:
     - build
 
+- name: Set Archive Path Variable
+  set_fact:
+    docker_tar_image: "{{ cache_folder }}/{{ apps[0].name }}.tar"
+  tags:
+    - build
+
+
 - name: Build docker image
   community.docker.docker_image:
     build:
@@ -39,7 +46,6 @@
     name: "{{ apps[0].name }}"
     tag: "{{ apps[0].version }}"
     source: build
-    archive_path: "./.cache/{{ apps[0].name }}.tar"
-  register: image_tar
+    archive_path: "{{ docker_tar_image }}"
   tags:
     - build

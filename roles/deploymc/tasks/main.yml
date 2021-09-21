@@ -1,0 +1,19 @@
+---
+
+- name: Fetch docker image archive
+  ansible.builtin.copy:
+    src: "{{ hostvars['localhost'].docker_tar_image }}"
+    dest: "{{ apps[0].name }}.tar"
+    mode: '0644'
+  tags:
+    - deploy
+
+- name: Unpuck docker image from archive
+  docker_image:
+    name: "{{ apps[0].name }}"
+    tag: "{{ apps[0].version }}"
+    load_path: "{{ apps[0].name }}.tar"
+    state: present
+    source: load
+  tags:
+    - deploy

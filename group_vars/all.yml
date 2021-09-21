@@ -4,3 +4,4 @@ ssh_pub: "{{ lookup('env', 'SSH_PUBLIC_KEY') }}"
 ssh_private: "{{ lookup('env', 'SSH_PRIVATE_KEY') }}"
 project_name: "{{ lookup('env', 'PROJECT_NAME') }}"
 key_name: "{{ project_name }} key"
+cache_folder: ./.cache
