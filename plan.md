@@ -10,6 +10,10 @@
 - ✅ docker build project
 
 ## deploy builded
+- 🤗 deploy by arguments
+  - application
+  - git-url
+  - version
 - ✅ copy docker image .tar archive from local to remote
 - ✅ docker load image from .tar archive
 - ✅ fetch all compose production files
@@ -21,10 +25,12 @@
 - docker system prune --filter="{{ project }}" # clear from local machine
 
 ---
-## promotion script via github actions
-- git clone git@deployment.git
-- git commit new version in version.yml
-- git push git@deployment.git
+## Auto deploy via github actions
+- deploy scripts
+- promotion by trigger
+  - git clone git@deployment.git
+  - git commit new version in version.yml
+  - git push git@deployment.git
 
 ## rollback
 - ✅ get versions from hosts, from compose
