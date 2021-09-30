@@ -1,5 +1,10 @@
 ---
 
+- name: Create cache folder
+  file:
+    path: "{{ cache_folder }}"
+    state: directory
+
 - name: Create SSH private key
   ansible.builtin.copy:
     content: "{{ ssh_private }}\n"
@@ -14,7 +19,6 @@
     path: "{{ cache_folder }}/{{ apps[0].name }}"
     state: directory
     recurse: yes
-    mode: '0644'
   register: git_folder
   tags:
     - build
@@ -38,14 +42,15 @@
   tags:
     - build
 
-
 - name: Build docker image
   community.docker.docker_image:
     build:
       path: "{{ git_folder.path }}"
     name: "{{ apps[0].name }}"
     tag: "{{ apps[0].version }}"
-    source: build
+    source: local
     archive_path: "{{ docker_tar_image }}"
+    state: present
   tags:
     - build
+

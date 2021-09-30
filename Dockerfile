@@ -5,6 +5,7 @@ WORKDIR /app
 RUN apk add \
   git \
   docker \
+  docker-compose \
   python3 \
   py3-pip \
   python3-dev \
@@ -18,7 +19,8 @@ RUN apk add \
   && pip install cryptography \
   && pip install docker ansible-core
 
-COPY ./ ./
+COPY ./requirements.yml ./requirements.yml
 RUN ansible-galaxy install -r requirements.yml
+COPY ./ ./
 
 # CMD ./run.sh

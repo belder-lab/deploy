@@ -8,8 +8,8 @@
   tags:
     - deploy
 
-- name: Unpuck docker image from archive
-  docker_image:
+- name: Unpack docker image from archive
+  community.docker.docker_image:
     name: "{{ apps[0].name }}"
     tag: "{{ apps[0].version }}"
     load_path: "{{ apps[0].name }}.tar"
@@ -17,3 +17,10 @@
     source: load
   tags:
     - deploy
+
+- name: Compose up
+  community.docker.docker_compose:
+    project_src: "{{ role_path }}/files"
+  tags:
+    - deploy
+

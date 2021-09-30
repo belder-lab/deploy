@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  backend:
+    container_name: telegram-bot-microservice
+    image: telegram-bot-microservice:v1.0.0
+    environment:
+      PG_CONNECTION_STRING: "postgres://postgres:password@db"
+    ports:
+      - 80:80
+    depends_on:
+      - db
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+      resources:
+        limits:
+          memory: 256M
+  db:
+    container_name: postgres-database
+    image: postgres:13.4-alpine
+    environment:
+      POSTGRES_PASSWORD: password
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+  # admin panel for database
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080

@@ -1,7 +1,7 @@
 # ideas
 - ✅ run ansible script in docker for testing / persistence
-- add volume for cache folder (speed up next builds)
-- add loop for build
+- ✅ add volume for cache folder (speed up next builds)
+- 🤗 add loop for build
 
 ## build
 - ✅ check application on production and compare versions, deploy when version not equal
@@ -12,22 +12,25 @@
 ## deploy builded
 - ✅ copy docker image .tar archive from local to remote
 - ✅ docker load image from .tar archive
-- fetch all compose production files
-- docker-compose up
+- ✅ fetch all compose production files
+- ✅ add docker compose file
+- 🤗 docker compose file convert in jinja
+- 🤗 docker compose throw ENV in container
+- ✅ docker-compose up
 - clear git folder from localhost
 - docker system prune --filter="{{ project }}" # clear from local machine
 
 ---
-## promotion
-- set deployment version in ansible-playbook argument via "version"
-- set deployment project name in ansible-playbook argument via "project"
+## promotion script via github actions
 - git clone git@deployment.git
 - git commit new version in version.yml
 - git push git@deployment.git
-- clean docker cache `docker system prune -a`
-- clear git folder
 
 ## rollback
-- get versions from hosts, from compose
-- compare diff
-- setup docker images from versions.yml
+- ✅ get versions from hosts, from compose
+- ✅ compare diff versions
+- ✅ setup docker images from versions.yml
+
+---
+## Improvements
+-  Deploy PostgreSQL outside docker
