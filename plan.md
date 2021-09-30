@@ -23,6 +23,7 @@
 - ✅ docker-compose up
 - clear git folder from localhost
 - docker system prune --filter="{{ project }}" # clear from local machine
+- ⚠️ remove ssh key from cache
 
 ---
 ## Auto deploy via github actions
@@ -39,4 +40,4 @@
 
 ---
 ## Improvements
--  Deploy PostgreSQL outside docker
+- Deploy PostgreSQL outside docker
