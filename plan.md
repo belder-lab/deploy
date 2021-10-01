@@ -10,24 +10,25 @@
 - ✅ docker build project
 
 ## deploy builded
-- 🤗 deploy by arguments
-  - application
-  - git-url
-  - version
 - ✅ copy docker image .tar archive from local to remote
 - ✅ docker load image from .tar archive
 - ✅ fetch all compose production files
 - ✅ add docker compose file
 - 🤗 docker compose file convert in jinja
-- 🤗 docker compose throw ENV in container
+- ✅ docker compose throw ENV in container
 - ✅ docker-compose up
 - clear git folder from localhost
 - docker system prune --filter="{{ project }}" # clear from local machine
-- ⚠️ remove ssh key from cache
+- ✅ remove ssh key from cache
 
 ---
 ## Auto deploy via github actions
-- deploy scripts
+- 🤗 deploy script by arguments (in deploy repository)
+  - arguments:
+    - application
+    - git-url
+    - version
+- 🤗 basic CI/CD
 - promotion by trigger
   - git clone git@deployment.git
   - git commit new version in version.yml

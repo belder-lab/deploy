@@ -1,18 +1,9 @@
 ---
 
 - name: Create cache folder
-  file:
+  ansible.builtin.file:
     path: "{{ cache_folder }}"
     state: directory
-
-- name: Create SSH private key
-  ansible.builtin.copy:
-    content: "{{ ssh_private }}\n"
-    dest: "{{ cache_folder }}/ssh_private_key"
-    mode: '0600'
-  register: ssh_private_key
-  tags:
-    - build
 
 - name: Create folder for source
   ansible.builtin.file:
@@ -31,7 +22,7 @@
     clone: yes
     accept_hostkey: yes
     depth: 1
-    key_file: "{{ playbook_dir }}/{{ ssh_private_key.dest }}"
+    key_file: "{{ playbook_dir }}/ssh/id_ed25519"
   register: repo
   tags:
     - build
@@ -53,4 +44,3 @@
     state: present
   tags:
     - build
-

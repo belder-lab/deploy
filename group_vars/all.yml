@@ -1,7 +1,7 @@
 ---
 do_token: "{{ lookup('env', 'DO_TOKEN') }}"
-ssh_pub: "{{ lookup('env', 'SSH_PUBLIC_KEY') }}"
-ssh_private: "{{ lookup('env', 'SSH_PRIVATE_KEY') }}"
+ssh_pub: "{{ lookup('file', '/app/ssh/id_ed25519.pub') }}"
+ssh_private: "{{ lookup('file', '/app/ssh/id_ed25519') }}"
 project_name: "{{ lookup('env', 'PROJECT_NAME') }}"
 key_name: "{{ project_name }} key"
 cache_folder: ./.cache
