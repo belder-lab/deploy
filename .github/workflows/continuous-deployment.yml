@@ -22,7 +22,7 @@ jobs:
 
       - name: Create dot ENV file
         run: |
-          echo "DO_TOKEN=${{ secrets.DO_TOKEN }}" >> .env
+          echo DO_TOKEN=${{ secrets.DO_TOKEN }} >> .env
           echo "PROJECT_NAME=fastup-kit" >> .env
 
       - name: Create SSH files
