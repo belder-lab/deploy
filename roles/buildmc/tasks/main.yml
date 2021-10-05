@@ -5,42 +5,37 @@
     path: "{{ cache_folder }}"
     state: directory
 
-- name: Create folder for source
+- name: Create folders for source
   ansible.builtin.file:
-    path: "{{ cache_folder }}/{{ apps[0].name }}"
+    path: "{{ cache_folder }}/{{ item.name }}"
     state: directory
     recurse: yes
-  register: git_folder
-  tags:
-    - build
+  loop: "{{ apps }}"
+  register: git_folders
 
 - name: Clone source code
   ansible.builtin.git:
-    repo: "{{ apps[0].repo }}"
-    dest: "{{ git_folder.path }}"
-    version: "{{ apps[0].version }}"
+    repo: "{{ item.repo }}"
+    dest: "{{ git_folders.results[index].path }}"
+    version: "{{ item.version }}"
     clone: yes
     accept_hostkey: yes
     depth: 1
     key_file: "{{ playbook_dir }}/ssh/id_ed25519"
+  loop: "{{ apps }}"
+  loop_control:
+    index_var: index
   register: repo
-  tags:
-    - build
-
-- name: Set Archive Path Variable
-  set_fact:
-    docker_tar_image: "{{ cache_folder }}/{{ apps[0].name }}.tar"
-  tags:
-    - build
 
 - name: Build docker image
   community.docker.docker_image:
     build:
-      path: "{{ git_folder.path }}"
-    name: "{{ apps[0].name }}"
-    tag: "{{ apps[0].version }}"
+      path: "{{ git_folders.results[index].path }}"
+    name: "{{ item.name }}"
+    tag: "{{ item.version }}"
     source: local
-    archive_path: "{{ docker_tar_image }}"
+    archive_path: "{{ cache_folder }}/{{ item.name }}.tar"
     state: present
-  tags:
-    - build
+  loop: "{{ apps }}"
+  loop_control:
+    index_var: index

@@ -23,4 +23,4 @@ COPY ./requirements.yml ./requirements.yml
 RUN ansible-galaxy install -r requirements.yml
 COPY ./ ./
 
-# CMD ./run.sh
+CMD ./run.sh

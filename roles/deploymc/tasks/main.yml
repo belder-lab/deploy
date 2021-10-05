@@ -2,25 +2,21 @@
 
 - name: Fetch docker image archive
   ansible.builtin.copy:
-    src: "{{ hostvars['localhost'].docker_tar_image }}"
-    dest: "{{ apps[0].name }}.tar"
+    src: "{{ cache_folder }}/{{ item.name }}.tar"
+    dest: "{{ item.name }}.tar"
     mode: '0644'
-  tags:
-    - deploy
+  loop: "{{ apps }}"
 
 - name: Unpack docker image from archive
   community.docker.docker_image:
-    name: "{{ apps[0].name }}"
-    tag: "{{ apps[0].version }}"
-    load_path: "{{ apps[0].name }}.tar"
+    name: "{{ item.name }}"
+    tag: "{{ item.version }}"
+    load_path: "{{ item.name }}.tar"
     state: present
     source: load
-  tags:
-    - deploy
+  loop: "{{ apps }}"
 
 - name: Compose up
   community.docker.docker_compose:
     project_src: "{{ role_path }}/files"
-  tags:
-    - deploy
 
