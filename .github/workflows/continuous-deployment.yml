@@ -20,13 +20,10 @@ jobs:
           name: id_ed25519
           known_hosts: unnecessary
 
-      - name: Run ansible-galaxy
-        run: ansible-galaxy install -r requirements.yml
-
-      - name: Run ansible-playbook
-        run: ansible-playbook deploy-app.yml --tags "build" -i production.ini -i do_hosts.yml -vvvv
-        env:
-          PROJECT_NAME: fastup-kit
-          DO_TOKEN: ${{ secrets.DO_TOKEN }}
-          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      # - name: Run ansible-playbook
+      #   run: ansible-playbook deploy-app.yml --tags "build" -i production.ini -i do_hosts.yml -vvvv
+      #   env:
+      #     PROJECT_NAME: fastup-kit
+      #     DO_TOKEN: ${{ secrets.DO_TOKEN }}
+      #     SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+      #     SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}

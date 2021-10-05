@@ -9,6 +9,8 @@ services:
       - ./ssh:/app/ssh
     env_file:
       - ./.env
+    # command: ./run.sh
+
     # For Debug
     # stdin_open: true
     # tty: true
