@@ -16,6 +16,8 @@ services:
       resources:
         limits:
           memory: 256M
+    env_file:
+      - ./.env
   db:
     container_name: postgres-database
     image: postgres:13.4-alpine
