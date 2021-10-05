@@ -13,6 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache buildmc
+        id: buildmc
+        uses: actions/cache@v2
+        with:
+          path: .cache
+          key: ${{ runner.os }}-buildmc-${{ hashFiles('vars/versions.yml') }}
+
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
@@ -35,6 +42,9 @@ jobs:
         run: |
           ls -al
           ls ./ssh -al
+
+      - name: Run build ansible-playbook
+        run: docker-compose build && docker-compose run ansible -f docker-compose.yml -f docker-compose.build.yml
 
       # - name: Run ansible-playbook
       #   run: ansible-playbook deploy-app.yml --tags "build" -i production.ini -i do_hosts.yml -vvvv
