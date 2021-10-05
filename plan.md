@@ -22,6 +22,7 @@
 
 ---
 ## Auto deploy via github actions
+- add cache (github actions) for docker layers
 - 🤗 deploy script by arguments (in deploy repository)
   - arguments:
     - application
