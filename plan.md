@@ -1,7 +1,7 @@
 # ideas
 - ✅ run ansible script in docker for testing / persistence
 - ✅ add volume for cache folder (speed up next builds)
-- 🤗 add loop for build
+- ✅ add loop for build
 
 ## build
 - ✅ check application on production and compare versions, deploy when version not equal
@@ -14,7 +14,6 @@
 - ✅ docker load image from .tar archive
 - ✅ fetch all compose production files
 - ✅ add docker compose file
-- 🤗 docker compose file convert in jinja
 - ✅ docker compose throw ENV in container
 - ✅ docker-compose up
 - clear git folder from localhost

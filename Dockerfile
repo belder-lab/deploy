@@ -1,9 +1,10 @@
-FROM docker:20.10.8-alpine3.13
+FROM alpine:3.13
 
 WORKDIR /app
 
 RUN apk add \
   git \
+  openssh \
   docker \
   docker-compose \
   python3 \
@@ -23,4 +24,4 @@ COPY ./requirements.yml ./requirements.yml
 RUN ansible-galaxy install -r requirements.yml
 COPY ./ ./
 
-CMD ./run.sh
+# CMD ./run.sh

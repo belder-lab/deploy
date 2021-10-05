@@ -1,5 +1,0 @@
----
-- name: Enter on server
-  shell: "echo hello"
-  tags:
-    - backend
