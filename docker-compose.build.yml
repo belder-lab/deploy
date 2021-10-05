@@ -1,0 +1,4 @@
+version: "3.9"
+services:
+  ansible:
+    command: ansible-playbook deploy-app.yml --tags "build" -vvvv
