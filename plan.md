@@ -23,13 +23,13 @@
 ---
 ## Auto deploy via github actions
 - add cache (github actions) for docker layers
-- 🤗 deploy script by arguments (in deploy repository)
+- ✅ deploy script by arguments (in deploy repository)
   - arguments:
     - application
     - git-url
     - version
 - 🤗 basic CI/CD
-- promotion by trigger
+- promotion script by trigger (github action)
   - git clone git@deployment.git
   - git commit new version in version.yml
   - git push git@deployment.git
