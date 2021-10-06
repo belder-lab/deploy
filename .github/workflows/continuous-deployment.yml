@@ -44,12 +44,5 @@ jobs:
           ls ./ssh -al
 
       - name: Run build ansible-playbook
-        run: docker-compose -f docker-compose.yml -f docker-compose.build.yml up ansible
+        run: docker-compose -f docker-compose.yml -f configs/docker-compose.build.yml up ansible
 
-      # - name: Run ansible-playbook
-      #   run: ansible-playbook deploy-app.yml --tags "build" -i production.ini -i do_hosts.yml -vvvv
-      #   env:
-      #     PROJECT_NAME: fastup-kit
-      #     DO_TOKEN: ${{ secrets.DO_TOKEN }}
-      #     SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-      #     SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}

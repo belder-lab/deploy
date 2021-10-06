@@ -5,17 +5,39 @@ Scripts for build & deploy on single server
 ## Requirements for deploy
 * Docker
 
-## Setup
+## Setup new application
 1. Fork repository
-2. Set secure env on github actions:
-    1. DO_TOKEN - digital ocean token
+2. Create `.env` file in root with
+  1. DO_TOKEN - digital ocean token
+  2. PROJECT_NAME - project name with symbols `[a-z]` and `-`
+  3. ... other ENVs for projects, define theme into `docker-compose.yml.j2` too
 3. Add ssh keys in `./ssh` folder of this project
-    1. id_ed25519
-    2. id_ed25519.pub
-4. Set env name on .github/workflows/continuous-deployment.yml:
-    1. PROJECT_NAME - project name with symbols `[a-z]` and `-`
+  1. id_ed25519
+  2. id_ed25519.pub
+4. Add applications in vars/versions.yml
+5. Change deploy config in `roles/deploymc/files/docker-compose.yml.j2`
+  1. Define ENVs from `.env` file
+  2. Define application from apps
 
-## Run
+# Commands
+```
+# Only build
+docker-compose build && docker-compose -f docker-compose.yml -f configs/docker-compose.build.yml up ansible
+
+# Deploy only infra
+docker-compose build && docker-compose -f docker-compose.yml -f configs/docker-compose.infra.yml up ansible
+
+# Deploy all
+docker-compose build && docker-compose -f docker-compose.yml -f configs/docker-compose.all.yml up ansible
+
+# Deploy all microservices by vars/versions.yml
+docker-compose build && docker-compose -f docker-compose.yml -f configs/docker-compose.all-ms.yml up ansible
+
+# Deploy single microservice by args
+docker-compose build && VERSION=v1.0.0 NAME=telegram-bot-microservice REPO=git@github.com:fastup-kit/telegram-bot-microservice.git docker-compose -f docker-compose.yml -f configs/docker-compose.single-ms.yml up ansible
+```
+
+## Dev Run
 ```sh
 docker-compose build && docker-compose run ansible
 ```

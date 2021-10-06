@@ -2,9 +2,10 @@ version: "3.9"
 services:
   backend:
     container_name: telegram-bot-microservice
-    image: telegram-bot-microservice:v1.0.0
+    image: telegram-bot-microservice:{{ apps | selectattr('name', '==', 'telegram-bot-microservice') | map(attribute='version') | first }}
     environment:
-      PG_CONNECTION_STRING: "postgres://postgres:password@db"
+      PG_CONNECTION_STRING: "{{ lookup('env', 'PG_CONNECTION_STRING') }}"
+      TELEGRAM_TOKEN: "{{ lookup('env', 'TELEGRAM_TOKEN') }}"
     ports:
       - 80:80
     depends_on:
@@ -16,13 +17,11 @@ services:
       resources:
         limits:
           memory: 256M
-    env_file:
-      - ./.env
   db:
     container_name: postgres-database
     image: postgres:13.4-alpine
     environment:
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: "{{ lookup('env', 'POSTGRES_PASSWORD') }}"
     deploy:
       resources:
         limits:

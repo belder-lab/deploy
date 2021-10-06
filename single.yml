@@ -1,0 +1,29 @@
+---
+
+# build applications
+- hosts: localhost
+  gather_facts: false
+  connection: local
+  roles:
+    - role: buildmc
+  vars:
+    apps:
+      - name: "{{ app_name }}"
+        version: "{{ app_version }}"
+        repo: "{{ app_repo }}"
+  tags:
+    - build
+
+# deploy applications on hosts
+- hosts: localhost # do
+  gather_facts: false
+  connection: local
+  roles:
+    - role: deploymc
+  vars:
+    apps:
+      - name: "{{ app_name }}"
+        version: "{{ app_version }}"
+        repo: "{{ app_repo }}"
+  tags:
+    - deploy

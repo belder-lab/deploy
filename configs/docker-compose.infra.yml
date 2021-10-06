@@ -1,0 +1,5 @@
+# deploy infrastructure
+version: "3.9"
+services:
+  ansible:
+    command: ansible-playbook all.yml --tags "ssh,vps" -i production.ini -i do_hosts.yml -vvvv

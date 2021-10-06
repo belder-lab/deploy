@@ -33,7 +33,7 @@
       path: "{{ git_folders.results[index].path }}"
     name: "{{ item.name }}"
     tag: "{{ item.version }}"
-    source: local
+    source: build
     archive_path: "{{ cache_folder }}/{{ item.name }}.tar"
     state: present
   loop: "{{ apps }}"

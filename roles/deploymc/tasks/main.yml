@@ -16,6 +16,11 @@
     source: load
   loop: "{{ apps }}"
 
+- name: Create docker-compose.yml
+  template:
+    dest: "{{ role_path }}/files/docker-compose.yml"
+    src: "{{ role_path }}/files/docker-compose.yml.j2"
+
 - name: Compose up
   community.docker.docker_compose:
     project_src: "{{ role_path }}/files"
