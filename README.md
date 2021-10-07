@@ -18,7 +18,7 @@ Scripts for build & deploy on single server
 5. Change deploy config in `roles/deploymc/files/docker-compose.yml.j2`
   1. Define ENVs from `.env` file
   2. Define application from apps
-6. Copy `github` folder in application repository **with dot** `.github`
+6. Copy `github` folder in application repository folder **with dot** `.github`
 
 # Commands
 ```
