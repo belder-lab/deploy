@@ -11,18 +11,16 @@
   gather_facts: false
   connection: local
   roles:
-    - role: buildmc
+    - role: buildms
   vars_files:
     - ./vars/versions.yml
   tags:
     - build
 
 # deploy applications on hosts
-- hosts: localhost # do
-  gather_facts: false
-  connection: local
+- hosts: do
   roles:
-    - role: deploymc
+    - role: deployms
   vars_files:
     - ./vars/versions.yml
   tags:

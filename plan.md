@@ -29,10 +29,11 @@
     - git-url
     - version
 - 🤗 basic CI/CD
-- promotion script by trigger (github action)
+- 🤗 promotion script by trigger (github action)
   - git clone git@deployment.git
   - git commit new version in version.yml
   - git push git@deployment.git
+- 🤗 auto deploy action after fetch new version
 
 ## rollback
 - ✅ get versions from hosts, from compose

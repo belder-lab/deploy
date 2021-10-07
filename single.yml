@@ -5,7 +5,7 @@
   gather_facts: false
   connection: local
   roles:
-    - role: buildmc
+    - role: buildms
   vars:
     apps:
       - name: "{{ app_name }}"
@@ -15,11 +15,10 @@
     - build
 
 # deploy applications on hosts
-- hosts: localhost # do
+- hosts: do
   gather_facts: false
-  connection: local
   roles:
-    - role: deploymc
+    - role: deployms
   vars:
     apps:
       - name: "{{ app_name }}"

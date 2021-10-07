@@ -7,6 +7,17 @@
     mode: '0644'
   loop: "{{ apps }}"
 
+- name: install pip3
+  ansible.builtin.apt:
+    name: python3-pip
+    state: present
+    update_cache: yes
+
+- name: Install Docker Module for Python
+  ansible.builtin.pip:
+    name: docker
+    state: present
+
 - name: Unpack docker image from archive
   community.docker.docker_image:
     name: "{{ item.name }}"
@@ -17,10 +28,16 @@
   loop: "{{ apps }}"
 
 - name: Create docker-compose.yml
-  template:
-    dest: "{{ role_path }}/files/docker-compose.yml"
-    src: "{{ role_path }}/files/docker-compose.yml.j2"
+  ansible.builtin.template:
+    dest: "docker-compose.yml"
+    src: "docker-compose.yml.j2"
+
+- name: Install compose
+  ansible.builtin.pip:
+    name: docker-compose
+    state: present
 
 - name: Compose up
   community.docker.docker_compose:
-    project_src: "{{ role_path }}/files"
+    project_src: "."
+    build: no

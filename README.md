@@ -18,6 +18,7 @@ Scripts for build & deploy on single server
 5. Change deploy config in `roles/deploymc/files/docker-compose.yml.j2`
   1. Define ENVs from `.env` file
   2. Define application from apps
+6. Copy `github` folder to your repository **with dot** `.github`
 
 # Commands
 ```
@@ -26,9 +27,6 @@ docker-compose build && docker-compose -f docker-compose.yml -f configs/docker-c
 
 # Deploy only infra
 docker-compose build && docker-compose -f docker-compose.yml -f configs/docker-compose.infra.yml up ansible
-
-# Deploy all
-docker-compose build && docker-compose -f docker-compose.yml -f configs/docker-compose.all.yml up ansible
 
 # Deploy all microservices by vars/versions.yml
 docker-compose build && docker-compose -f docker-compose.yml -f configs/docker-compose.all-ms.yml up ansible
@@ -46,6 +44,14 @@ docker-compose build && docker-compose run ansible
 Show dynamic inventories:
 ```sh
 ansible-inventory -i do_hosts.yml --graph -vvvv
+```
+
+Clear all caches:
+```
+docker stop $(docker ps -q)
+docker rm $(docker ps -aq)
+docker rmi -f $(docker images -q)
+rm -rf .cache
 ```
 
 Add in `production` enviroment file
