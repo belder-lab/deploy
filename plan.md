@@ -28,7 +28,8 @@
     - application
     - git-url
     - version
-- 🤗 basic CI/CD
+- ✅ basic CI/CD
+- 🤗 CI / CD for deploy application
 - 🤗 promotion script by trigger (github action)
   - git clone git@deployment.git
   - git commit new version in version.yml
