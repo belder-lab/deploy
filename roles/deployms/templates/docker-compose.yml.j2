@@ -17,6 +17,8 @@ services:
       resources:
         limits:
           memory: 256M
+    networks:
+      - app
   db:
     container_name: postgres-database
     image: postgres:13.4-alpine
@@ -26,8 +28,43 @@ services:
       resources:
         limits:
           memory: 256M
+    networks:
+      - app
   # admin panel for database
   adminer:
     image: adminer
     ports:
       - 8080:8080
+    networks:
+      - app
+  migration:
+    image: migration:{{ apps | selectattr('name', '==', 'migration') | map(attribute='version') | first }}
+    environment:
+      PG_CONNECTION_STRING: "{{ lookup('env', 'PG_CONNECTION_STRING') }}"
+    depends_on:
+      - db
+    networks:
+      - app
+  reverse-proxy:
+    image: reverse-proxy:{{ apps | selectattr('name', '==', 'reverse-proxy') | map(attribute='version') | first }}
+    ports:
+      - 80:80
+    environment:
+      NGINX_ENTRYPOINT_QUIET_LOGS: 1
+    depends_on:
+      - backend
+      - minio
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 128M
+    networks:
+      - app
+networks:
+  app:
+    name: app

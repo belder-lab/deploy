@@ -1,5 +1,12 @@
 ---
 apps:
-  - name: telegram-bot-microservice
-    version: v1.0.1
-    repo: git@github.com:fastup-kit/telegram-bot-microservice.git
+  - name: node-backend
+    version: v1.0.0
+    repo: git@github.com:fastup-kit/node-backend.git
+  - name: migration
+    version: v1.0.0
+    repo: git@github.com:fastup-kit/migration.git
+  - name: reverse-proxy
+    version: v1.0.0
+    repo: git@github.com:fastup-kit/reverse-proxy.git
+
