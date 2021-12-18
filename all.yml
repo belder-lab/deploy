@@ -19,6 +19,7 @@
 
 # deploy applications on hosts
 - hosts: do
+  gather_facts: false
   roles:
     - role: deployms
   vars_files:
