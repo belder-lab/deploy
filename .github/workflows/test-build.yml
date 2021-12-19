@@ -2,7 +2,7 @@ name: Testing build
 
 on:
   # For debug
-  push:
+  pull_request:
     branches:
       - main
   workflow_dispatch:

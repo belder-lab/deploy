@@ -19,13 +19,11 @@ Scripts for build & deploy on single server
 5. Change deploy config in `roles/deployms/files/docker-compose.yml.j2`
   1. Define ENVs from `.env` file
   2. Define application from apps
-6. Copy `github` folder in application repository folder **with dot** `.github`
-7. For github actions `.github/workflows/test-build.yml`: install github ENVs (secrets) the same as in `.env`
+6. For github actions `.github/workflows/test-build.yml` and `.github/workflows/deploy-ms.yml`: install github ENVs (secrets) the same as in `.env`
   1. SSH_PRIVATE_KEY
   2. SSH_PUBLIC_KEY
   3. DO_TOKEN
   4. PROJECT_NAME
-<!-- 8. the same for deploy-ms -->
 
 # Commands
 ```
