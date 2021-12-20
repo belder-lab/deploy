@@ -1,4 +1,4 @@
-name: Continuous Deployment Application
+name: Deploy All Applications
 
 on:
   push:

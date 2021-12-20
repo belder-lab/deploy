@@ -1,4 +1,4 @@
-name: Continuous Deployment
+name: Deploy Infrastructure
 
 on:
   workflow_dispatch:
