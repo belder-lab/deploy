@@ -7,6 +7,7 @@ Scripts for build & deploy on single server
 <br />
 
 ⚠⚠⚠ NOTICE: Depricated ⚠⚠⚠
+
 This method of deployment very complicated. The best practice - make deployment script more independent and split it on the small parts, each deployment script by each repository. New way still in progress.
 
 <br />
